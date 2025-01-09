@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
+    public static MenuManager menuManager;
 
     public Brick BrickPrefab;
     public int LineCount = 6;
@@ -19,11 +20,9 @@ public class MainManager : MonoBehaviour
     
     private bool m_Started = false;
     private int m_Points;
+    private int maxScore;
     
     private bool m_GameOver = false;
-
-    private int maxScore = 0;
-
     
     // Start is called before the first frame update
     void Start()
@@ -52,6 +51,10 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+
+        menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
+        
+        LoadJSON();
     }
 
     private void Update()
@@ -88,27 +91,29 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
-    }
-
-    public void Save()
-    {
-
+        SaveJSON();
     }
     
     [System.Serializable]
     class SaveData
     {
         public int maxScore;
+        public string champion;
     }
 
     public void SaveJSON()
     {
-        SaveData data = new SaveData();
-        data.maxScore = m_Points;
+        if (m_Points > maxScore)
+        {
+            SaveData data = new SaveData();
+            
+            data.maxScore = m_Points;
+            data.champion = menuManager.name;
 
-        string json = JsonUtility.ToJson(data);
-    
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+            string json = JsonUtility.ToJson(data);
+        
+            File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        }
     }
 
     public void LoadJSON()
@@ -120,6 +125,7 @@ public class MainManager : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
             maxScore = data.maxScore;
+            MaxScoreText.text = $"Best Score: {maxScore} - {data.champion}";
         }
     }
 }

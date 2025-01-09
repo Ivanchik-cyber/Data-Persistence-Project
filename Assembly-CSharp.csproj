@@ -42,6 +42,7 @@
      <Compile Include="Assets\Scripts\DeathZone.cs" />
      <Compile Include="Assets\Scripts\Brick.cs" />
      <Compile Include="Assets\Scripts\MenuManager.cs" />
+     <Compile Include="Assets\Samples\Unity Recorder\2.5.7\Movie Recorder Sample\MovieRecorderExample.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -692,6 +693,15 @@
     </Reference>
     <Reference Include="Unity.Mathematics">
         <HintPath>E:/GitHub/Data-Persistence-Project/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Editor">
+        <HintPath>E:/GitHub/Data-Persistence-Project/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder">
+        <HintPath>E:/GitHub/Data-Persistence-Project/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Base">
+        <HintPath>E:/GitHub/Data-Persistence-Project/Library/ScriptAssemblies/Unity.Recorder.Base.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
